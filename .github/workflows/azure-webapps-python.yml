@@ -65,9 +65,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Azure Login
+        id: azure-login
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Display Azure CLI version
+        run: az --version
+
+      - name: Display Azure CLI account info
+        run: az account show
+
+      - name: Display subscriptions
+        run: az account list
 
   deploy:
     permissions:
